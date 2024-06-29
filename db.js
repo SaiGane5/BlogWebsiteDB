@@ -3,11 +3,11 @@ import pg from 'pg';
 const { Pool } = pg;
 
 const pool = new Pool({
-    user: "vidyarang",
-    host: "localhost",
-    database: "blog",
-    password: "Sai@2005",
-    port: 5432,
+    user: ${{secrets.DB_USER}},
+    host: ${{secrets.DB_HOST}},
+    database: ${{secrets.DB_DATABASE}},
+    password: ${{secrets.DB_PASSWORD}},
+    port: ${{secrets.DB_PORT}},
 });
 
 pool.on('error', (err, client) => {
