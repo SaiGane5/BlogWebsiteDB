@@ -1,38 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog</title>
-  <link rel="stylesheet" href="/styles/main.css">
-  <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+    <meta charset="UTF-8">
+    <title>Blog Posts</title>
+    <style>
+        /* Reset some default browser styles */
+        body,
+        h1,
+        h2,
+        p,
+        ul,
+        li,
+        form,
+        input,
+        textarea,
+        a {
+            margin: 0;
+            padding: 0;
+            border: none;
+            font-family: "Arial", sans-serif;
+        }
+
+        body {
+            background-color: #f7f9fc;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        p,
+        input,
+        textarea {
+            margin-bottom: 20px;
+        }
+
+        small {
+            display: block;
+            margin-bottom: 20px;
+            color: #888;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #007bff;
+        }
+
+        a,
+        button {
+            text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            font-size: 1em;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button.full-width {
+            display: block;
+            text-align: center;
+            width: 100%;
+        }
+
+        a,
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        a.edit {
+            background-color: #007bff;
+        }
+
+        a.delete {
+            background-color: #e74c3c;
+        }
+
+        a.delete:hover {
+            background-color: #c0392b;
+        }
+
+        #newPostBtn {
+            margin: 20px 0;
+            background-color: #2ecc71;
+            padding: 10px 15px;
+            font-size: 1em;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border: none;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        #newPostBtn:hover {
+            background-color: #27ae60;
+        }
+    </style>
 </head>
-
 <body>
-  <div class="container">
-    <h1>My Blog</h1>
-    <a id="newPostBtn" href="/new">New Post</a>
-    <ul id="postsList">
-      <% posts.forEach(post=> { %>
-        <li>
-          <h2>
-            <%=post.title%>
-          </h2>
-          <small>
-            <%=post.date %>
-          </small>
-          <p>
-            <%=post.content%>
-          </p>
-          <small>By: <%=post.author%> </small>
-          <a class="edit" href="/edit/<%= post.id %>">Edit</a>
-          <a class="delete" href="/api/posts/delete/<%= post.id %>">Delete</a>
-        </li>
-        <% }); %>
-    </ul>
-  </div>
-
+    <div class="container">
+        <h1>Blog Posts</h1>
+        <ul>
+            <% posts.forEach(post => { %>
+                <li>
+                    <h2><%= post.title %></h2>
+                    <small>Author: <%= post.author %></small>
+                    <small>Published on: <%= new Date(post.date).toLocaleDateString() %></small>
+                    <p><%= post.content %></p>
+                    <a href="/edit/<%= post.id %>" class="edit">Edit</a>
+                    <a href="/api/posts/delete/<%= post.id %>" class="delete">Delete</a>
+                </li>
+            <% }); %>
+        </ul>
+        <a href="/new" id="newPostBtn">New Post</a>
+    </div>
 </body>
-
 </html>
