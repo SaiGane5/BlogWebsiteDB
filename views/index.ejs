@@ -152,7 +152,7 @@
                 <li>
                     <h2><%= post.title %></h2>
                     <small>Author: <%= post.author %></small>
-                    <small>Published on: <%= new Date(post.date).toLocaleDateString() %></small>
+                    <small>Published on: <%= new Date(post.created_at).toLocaleDateString() %></small>
                     <p><%= post.content %></p>
                     <a href="/edit/<%= post.id %>" class="edit">Edit</a>
                     <a href="/api/posts/delete/<%= post.id %>" class="delete">Delete</a>
