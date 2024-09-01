@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const app = express();
 const port = process.env.PORT || 3000;
-const API_URL = 'https://blogwebsitedb-api.onrender.com';
+const API_URL = 'https://blogwebsitedb.onrender.com';
 
 app.use(express.static('public'));
 
